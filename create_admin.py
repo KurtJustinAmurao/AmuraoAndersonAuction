@@ -15,3 +15,5 @@ if len(sys.argv) != 2:
 ok, msg = AuctionDB().add_user(sys.argv[1], getpass.getpass("Admin password: "),
                                "admin")
 print(msg)
+
+#python -m python_banyan.backplane.backplane
