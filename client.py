@@ -8,6 +8,8 @@ Threading note: ZeroMQ sockets must stay in one thread. The keyboard thread
 therefore never publishes directly. It puts messages in a queue, and the main
 (Banyan) thread sends them from its idle callback.
 """
+
+import pwinput
 import getpass
 import queue
 import sys
@@ -107,7 +109,7 @@ class AuctionClient(BanyanBase):
                 return self.quit()
             if choice not in ("1", "2"):
                 continue
-            password = getpass.getpass("Password: ")
+            password = pwinput.pwinput("Password: ", mask="*")
             if choice == "2":
                 role = input("Role (bidder/seller): ").strip().lower()
                 r = self.request("register_request", username=self.username,
